@@ -1,0 +1,322 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f8f1e9;
+  color: #2f4f2f;
+}
+
+header {
+  background-image: url('images/bg-field.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 110px 70px;
+  color: white;
+}
+
+.logo {
+  height: 300px;
+  margin-top: -100px;
+  margin-bottom: -20px;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  margin-bottom: -60px;
+  margin: 10;
+}
+
+nav {
+  background-color: #d8d1af;
+  text-align: center;
+  padding: 12px;
+}
+
+nav a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #2f4f2f;
+  font-weight: 600;
+}
+
+section {
+  padding: 50px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Каталог продукции */
+#products {
+  padding: 60px 20px;
+  background-color: #f8f1e9;
+}
+
+.product-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  text-align: center;
+  color: #2f4f2f;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.product-extension {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  color: #1f5722;
+  margin: 15px;
+  text-align: center;
+}
+
+.product-card p {
+  flex-grow: 1;
+  font-size: 14px;
+  color: #7f8c8d;
+  margin: 0 15px 20px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Секция услуг */
+.services {
+  padding: 60px 20px;
+  background-color: #f8f1e9;
+}
+
+.services__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  text-align: center;
+  color: #2f4f2f;
+  margin-bottom: 30px;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services__grid .product-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.services__grid .product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.services__grid .product-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+.services__grid .product-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  color: #1f5722;
+  margin: 15px;
+  text-align: center;
+}
+
+.services__grid .product-card p {
+  flex-grow: 1;
+  font-size: 14px;
+  color: #7f8c8d;
+  margin: 0 15px 20px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+footer {
+  background-color: #d8d1af;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* Анимация появления */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 Адаптив для мобильных экранов */
+@media (max-width: 768px) {
+  header {
+    padding: 40px 20px;
+  }
+
+  .logo {
+    height: 150px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  nav a {
+    display: block;
+    margin: 0;
+    padding: 8px 0;
+    font-size: 16px;
+  }
+
+  section {
+    padding: 20px 10px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .product-extension,
+  .services__grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .product-card img,
+  .services__grid .product-card img {
+    height: auto;
+  }
+
+  .product-card h3,
+  .services__grid .product-card h3 {
+    font-size: 18px;
+  }
+
+  .product-card p,
+  .services__grid .product-card p {
+    font-size: 14px;
+  }
+
+  footer {
+    padding: 15px;
+    font-size: 12px;
+  }
+}
+
+/* === Модальное окно для карточек продукции === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+  border-radius: 6px;
+}
+
+.modal-content h3 {
+  font-size: 24px;
+  color: #1f5722;
+  margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
+}
+
+.modal-content p {
+  font-size: 16px;
+  color: #2f4f2f;
+  line-height: 1.5;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #000;
+}

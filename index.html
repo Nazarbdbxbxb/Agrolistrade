@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AGROLIS TRADE — Агро-продукція та агрономічні послуги</title>
+  <meta name="description" content="AGROLIS TRADE — постачання мінеральних добрив, насіння та ЗЗР, логістика, агрономічні консультації. Доставка по Україні.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#2f8a3a;
+      --accent-2:#10621f;
+      --muted:#6b6b6b;
+      --bg:#f6f7f5;
+      --card:#ffffff;
+      --radius:12px;
+      --glass: rgba(255,255,255,0.6);
+      --max-width:1200px;
+      --shadow: 0 8px 30px rgba(15,23,42,0.08);
+      --glass-2: rgba(255,255,255,0.92);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:#0e1720;
+      background:linear-gradient(180deg, #eef6ed 0%, var(--bg) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Layout */
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px;}
+    header.site-header{
+      background:transparent;
+      padding:18px 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit}
+    .brand img{width:64px;height:64px;object-fit:contain;border-radius:10px;background:var(--card);padding:6px;box-shadow:var(--shadow)}
+    .brand h1{font-family:"Playfair Display", serif;margin:0;font-size:1.25rem;line-height:1;color:var(--accent-2)}
+    nav.main-nav{display:flex;gap:12px;align-items:center}
+    nav.main-nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
+    nav.main-nav a:hover{background:rgba(47,138,58,0.08);color:var(--accent-2)}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:28px;
+      align-items:center;
+      margin:18px 0 36px;
+      padding:36px;
+      border-radius:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.82));
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+    .hero-left h2{font-family:"Playfair Display", serif;font-size:2.1rem;margin:0 0 12px;color:var(--accent-2)}
+    .hero-left p.lead{margin:0 0 18px;color:#2b3b2b;font-weight:500}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700;
+      box-shadow:0 6px 18px rgba(16,98,31,0.12);
+    }
+    .btn-primary{background:var(--accent);color:white}
+    .btn-ghost{background:transparent;color:var(--accent-2);border:1.5px solid rgba(47,138,58,0.14)}
+    .hero-right{display:flex;flex-direction:column;gap:12px;align-items:center}
+    .hero-image{width:100%;height:260px;background-image:url('images/hero-field.jpg');background-size:cover;background-position:center;border-radius:12px;box-shadow:var(--shadow)}
+    .badge{background:var(--accent);color:white;padding:8px 12px;border-radius:999px;font-weight:700;font-size:0.85rem}
+
+    /* Sections */
+    section{margin:34px 0;padding:18px;border-radius:14px;background:transparent}
+    h2.section-title{margin:0 0 14px;font-family:"Playfair Display",serif;color:#184a2a}
+    .lead-small{color:var(--muted);margin-bottom:12px}
+
+    /* Products grid */
+    .product-extension{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      align-items:start;
+    }
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:12px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(15,23,42,0.04);
+      display:flex;flex-direction:column;gap:10px;height:100%;
+      cursor:pointer;
+    }
+    .card img{width:100%;height:130px;object-fit:cover;border-radius:8px}
+    .card h3{margin:0;font-size:1.05rem;color:#163a20}
+    .card p{margin:0;color:var(--muted);font-size:0.95rem}
+    .meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .price-badge{background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#fff;padding:6px 10px;border-radius:10px;font-weight:700;font-size:0.95rem}
+    .stock-muted{color:var(--muted);font-size:0.9rem}
+
+    /* Services grid */
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+
+    /* Portfolio */
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .portfolio-item{position:relative;overflow:hidden;border-radius:10px;cursor:pointer}
+    .portfolio-item img{width:100%;height:180px;object-fit:cover;display:block;transition:transform .35s ease}
+    .portfolio-item:hover img{transform:scale(1.06)}
+    .portfolio-caption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.5);color:white;padding:8px 10px;border-radius:8px;font-weight:600}
+
+    /* Testimonials */
+    .testimonials{display:flex;gap:14px;flex-wrap:wrap}
+    .testimonial{background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow);max-width:360px}
+    .testimonial p{margin:0;color:#233}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:start}
+    .contact-card{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
+    form input, form textarea, form button{
+      width:100%;padding:12px;border-radius:10px;border:1px solid rgba(10,10,10,0.06);font-size:0.95rem;margin-bottom:10px;
+    }
+    form button{background:var(--accent);color:#fff;border:0;font-weight:700;cursor:pointer}
+    .contact-info p{margin:6px 0;color:var(--muted)}
+
+    /* FAQ */
+    .faq-item{border-radius:10px;background:var(--card);padding:12px;box-shadow:var(--shadow);margin-bottom:10px}
+    .faq-question{display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+    .faq-answer{margin-top:8px;color:var(--muted);display:none}
+
+    /* Footer */
+    footer{padding:14px 0;color:var(--muted);text-align:center;font-size:0.9rem;margin-top:28px}
+
+    /* Product modal */
+    .product-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1400;
+      background: rgba(4,8,12,0.45);
+      padding: 20px;
+    }
+    .product-modal.show { display:flex; }
+    .product-modal .modal-card{
+      width:100%;
+      max-width:900px;
+      background: var(--glass-2);
+      border-radius:14px;
+      box-shadow: 0 20px 50px rgba(4,8,12,0.35);
+      overflow:hidden;
+      position:relative;
+      display:grid;
+      grid-template-columns: 380px 1fr;
+      gap:0;
+      align-items:stretch;
+      border:1px solid rgba(15,23,42,0.06);
+    }
+    .product-modal .modal-left{
+      background: linear-gradient(180deg, #fff, #f7faf7);
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .product-modal .modal-left img{
+      width:100%;
+      max-height:420px;
+      object-fit:cover;
+      border-radius:10px;
+      box-shadow:var(--shadow);
+    }
+    .product-modal .modal-right{
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .product-modal h3{margin:0;font-family:"Playfair Display",serif;color:var(--accent-2);font-size:1.5rem}
+    .product-modal .muted{color:var(--muted)}
+    .product-modal .modal-meta{display:flex;gap:12px;align-items:center;margin-top:6px}
+    .product-modal .modal-actions{margin-top:12px;display:flex;gap:12px;align-items:center}
+    .product-modal .close-btn{
+      position:absolute;right:12px;top:12px;border:0;background:transparent;font-size:22px;cursor:pointer;color:#233;
+    }
+
+    @media (max-width:1000px){
+      .product-modal .modal-card{grid-template-columns:1fr;}
+      .product-modal .modal-left{padding:12px}
+      .product-modal .modal-right{padding:16px}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .text-right{text-align:right}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+
+  <div class="container" id="top">
+    <header class="site-header" role="banner" aria-label="Шапка сайту">
+      <a href="#top" class="brand" aria-label="AGROLIS TRADE — повернутись на головну">
+        <img src="images/logo.png" alt="Логотип AGROLIS TRADE" />
+        <div>
+          <h1>AGROLIS TRADE</h1>
+          <div class="muted" style="font-size:0.85rem">Постачання добрив · насіння · ЗЗР</div>
+        </div>
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Головне меню">
+        <a href="#about">Про компанію</a>
+        <a href="#products">Продукція</a>
+        <a href="#services">Послуги</a>
+        <a href="#reviews">Відгуки</a>
+        <a href="#contact">Контакти</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Головна секція">
+      <div class="hero-left">
+        <div class="badge" aria-hidden="true">Аграрні рішення — 100% якість</div>
+        <h2>Підвищуйте врожайність із надійним партнером</h2>
+        <p class="lead">AGROLIS TRADE — постачаємо сертифіковані мінеральні добрива, насіння та засоби захисту рослин. Агрономічні консультації, логістика та супровід для фермерських господарств по всій Україні.</p>
+
+        <div style="margin-top:18px;color:var(--muted);font-size:0.95rem">
+          <strong>Швидка доставка</strong> • Сертифіковане насіння • Індивідуальні рішення для вашого поля
+        </div>
+      </div>
+
+      <aside class="hero-right" aria-label="Візуал">
+        <div class="hero-image" role="img" aria-label="Поле, пшениця на полі"></div>
+        <div style="display:flex;gap:8px;width:100%;justify-content:space-between;align-items:center">
+          <div style="font-size:0.95rem;color:var(--muted)">
+            <strong>Підтримка агронома</strong><br><span class="muted">телефон: +38 (099) 123-45-67</span>
+          </div>
+          <div style="font-size:0.9rem;color:var(--muted)">
+            <small>Працюємо з 2016</small>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title">Про компанію</h2>
+      <p class="lead-small">ТОВ "АГРОЛІС ТРЕЙД" — надійний постачальник ресурсів для сільського господарства. Ми співпрацюємо з відомими міжнародними виробниками, забезпечуємо логістику та надаємо агрономічні консультації.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start">
+        <div class="card" style="padding:18px">
+          <h3>Наша місія</h3>
+          <p>Допомагати господарствам отримувати максимальну ефективність від використання добрив та насіння: надавати якісні продукти та практичні рішення, підкріплені досвідом агрономів.</p>
+          <h3 style="margin-top:12px">Досвід та довіра</h3>
+          <p>Маємо практичний досвід роботи з різними культурами (пшениця, кукурудза, соняшник, ріпак, соя) та надаємо індивідуальні програми живлення.</p>
+        </div>
+
+        <aside class="card" aria-label="Фото команди">
+          <img src="images/team.jpg" alt="Команда AGROLIS TRADE" style="height:180px;object-fit:cover;margin-bottom:10px;border-radius:8px">
+          <strong>Команда</strong>
+          <p class="muted" style="margin:6px 0 0">Агрономи, логісти та менеджери з продажу — завжди поруч, щоб допомогти.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" aria-labelledby="products-title">
+      <h2 id="products-title" class="section-title">Продукція</h2>
+      <p class="lead-small">Асортимент: азотні, фосфорні, калійні, комплексні добрива, КАС, РКД, сульфоамофоси, сульфати, сертифіковане насіння та засоби захисту рослин.</p>
+
+      <div class="product-extension" role="list" aria-label="Продуктовий каталог">
+        <article class="card product-card" role="listitem" tabindex="0" data-key="Азотні добрива" aria-pressed="false">
+          <img src="images/nitrogen.jpg" alt="Азотні добрива">
+          <h3>Азотні добрива</h3>
+          <p>Швидкодіючі форми азоту для стартового росту та інтенсивного розвитку рослин.</p>
+          <div class="meta">
+            <div class="stock-muted" aria-hidden="true">—</div>
+            <div class="price-badge" aria-hidden="true">по запиту</div>
+          </div>
+        </article>
+
+        <article class="card product-card" role="listitem" tabindex="0" data-key="Фосфорні добрива" aria-pressed="false">
+          <img src="images/phosphorus.jpg" alt="Фосфорні добрива">
+          <h3>Фосфорні добрива</h3>
+          <p>Підвищують кореневу систему, сприяють формуванню квітів та насіння.</p>
+          <div class="meta">
+            <div class="stock-muted" aria-hidden="true">—</div>
+            <div class="price-badge" aria-hidden="true">по запиту</div>
+          </div>
+        </article>
+
+        <article class="card product-card" role="listitem" tabindex="0" data-key="Комплексні добрива" aria-pressed="false">
+          <img src="images/compound.jpg" alt="Комплексні добрива">
+          <h3>Комплексні добрива</h3>
+          <p>Оптимальне співвідношення N-P-K для збалансованого живлення.</p>
+          <div class="meta">
+            <div class="stock-muted" aria-hidden="true">—</div>
+            <div class="price-badge" aria-hidden="true">по запиту</div>
+          </div>
+        </article>
+
+        <article class="card product-card" role="listitem" tabindex="0" data-key="Калійні добрива" aria-pressed="false">
+          <img src="images/potassium.jpg" alt="Калійні добрива">
+          <h3>Калійні добрива</h3>
+          <p>Підвищують стійкість до посухи та складних погодних умов.</p>
+          <div class="meta">
+            <div class="stock-muted" aria-hidden="true">—</div>
+            <div class="price-badge" aria-hidden="true">по запиту</div>
+          </div>
+        </article>
+
+        <article class="card product-card" role="listitem" tabindex="0" data-key="Сульфоамофоси" aria-pressed="false">
+          <img src="images/sulphoammophos.jpg" alt="Сульфоамофоси">
+          <h3>Сульфоамофоси</h3>
+          <p>Збалансоване джерело азоту, фосфору та сірки — для кращого старту культур.</p>
+          <div class="meta">
+            <div class="stock-muted" aria-hidden="true">—</div>
+            <div class="price-badge" aria-hidden="true">по запиту</div>
+          </div>
+        </article>
+
+        <article class="card product-card" role="listitem" tabindex="0" data-key="КАС" aria-pressed="false">
+          <img src="images/kac.jpg" alt="КАС">
+          <h3>КАС</h3>
+          <p>Рідке азотне добриво з високою розчинністю та швидким ефектом.</p>
+          <div class="meta">
+            <div class="stock-muted" aria-hidden="true">—</div>
+            <div class="price-badge" aria-hidden="true">по запиту</div>
+          </div>
+        </article>
+
+        <article class="card product-card" role="listitem" tabindex="0" data-key="РКД" aria-pressed="false">
+          <img src="images/rkd.jpg" alt="РКД">
+          <h3>РКД</h3>
+          <p>Рідкі комплексні добрива для позакореневого живлення на всіх етапах вегетації.</p>
+          <div class="meta">
+            <div class="stock-muted" aria-hidden="true">—</div>
+            <div class="price-badge" aria-hidden="true">по запиту</div>
+          </div>
+        </article>
+
+        <article class="card product-card" role="listitem" tabindex="0" data-key="Сульфати" aria-pressed="false">
+          <img src="images/sulfate.jpg" alt="Сульфати">
+          <h3>Сульфати</h3>
+          <p>Джерело сірки та мікроелементів для підвищення якості врожаю.</p>
+          <div class="meta">
+            <div class="stock-muted" aria-hidden="true">—</div>
+            <div class="price-badge" aria-hidden="true">по запиту</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- (остальные секции оставлены без изменений) -->
+
+    <!-- CONTACT -->
+<section id="contact">
+  <h2 style="text-align: center;">Контакти</h2>
+  <div class="contact-card contact-info" style="
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 3000px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  ">
+    <h3 style="margin-bottom: 6px;">AGROLIS TRADE</h3>
+    <p class="muted">📞 Телефон: <a href="tel:+380991234567">+38 (099) 123-45-67</a></p>
+    <p class="muted">📧 Email: <a href="mailto:info@agrolis.ua">info@agrolis.ua</a></p>
+    <p class="muted">📍 Адреса: м. Кропивницький, вул. Аграрна, 10</p>
+    <p class="muted">🕒 Графік роботи: Пн–Пт 08:00–18:00</p>
+
+    <h4 style="margin-top:12px;">Мапа</h4>
+    <div style="border-radius:8px; overflow:hidden; margin-top:8px;">
+      <iframe
+        src="https://www.google.com/maps?q=Кропивницький+вул.+Аграрна+10&output=embed"
+        width="100%" height="250"
+        style="border: 0;"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Карта проїзду">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+    <footer role="contentinfo">
+      &copy; <span id="year"></span> AGROLIS TRADE. Усі права захищені.
+    </footer>
+  </div>
+
+  <!-- Product Modal (универсальная) -->
+  <div id="product-modal" class="product-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card" role="document" aria-labelledby="modalTitle">
+      <button class="close-btn" id="modalCloseBtn" aria-label="Закрити модалку">&times;</button>
+      <div class="modal-left">
+        <img id="modalImage" src="images/no-image.jpg" alt="Зображення товару">
+      </div>
+      <div class="modal-right">
+        <h3 id="modalTitle">Назва продукту</h3>
+        <div class="modal-meta">
+          <div id="modalPrice" class="price-badge">по запиту</div>
+          <div id="modalUnit" class="muted">—</div>
+          <div id="modalAvailability" class="muted">—</div>
+        </div>
+        <p id="modalDescription" class="muted" style="white-space:pre-wrap"></p>
+
+        <div style="margin-top:auto">
+          <div class="modal-actions">
+            <button class="btn btn-primary" id="modalOrderBtn">Замовити</button>
+            <button class="btn btn-ghost" id="modalInquiryBtn">Запитати деталі</button>
+          </div>
+          <p class="muted" style="margin-top:10px;font-size:0.9rem">Якщо фото відсутнє або дані не підвантажились — зв'яжіться з нами для уточнення.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* Главный скрипт: подгрузка CSV и модалка */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const CSV_URL = "https://docs.google.com/spreadsheets/d/1gcciGJgrT7NQNj4qWOMtS7C854nDXCi2XVwxTZmhGC8/export?format=csv";
+
+  // хранилище продуктов
+  const productsByCode = {};
+  const productsByName = {};
+  const productsIndex = {}; // lower -> product
+
+  // элементы модалки
+  const modal = document.getElementById('product-modal');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const modalImage = document.getElementById('modalImage');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDescription = document.getElementById('modalDescription');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalUnit = document.getElementById('modalUnit');
+  const modalAvailability = document.getElementById('modalAvailability');
+  const modalOrderBtn = document.getElementById('modalOrderBtn');
+  const modalInquiryBtn = document.getElementById('modalInquiryBtn');
+
+  // парсер CSV (поддерживает кавычки и запятые внутри полей)
+  function parseCSV(text) {
+    if (!text) return [];
+    if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+    const rows = [];
+    let cur = '';
+    let row = [];
+    let inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      const next = text[i+1];
+      if (ch === '"') {
+        if (inQuotes && next === '"') { cur += '"'; i++; }
+        else { inQuotes = !inQuotes; }
+        continue;
+      }
+      if (ch === ',' && !inQuotes) { row.push(cur); cur = ''; continue; }
+      if ((ch === '\n' || ch === '\r') && !inQuotes) {
+        if (ch === '\r' && next === '\n') i++;
+        row.push(cur);
+        rows.push(row);
+        row = [];
+        cur = '';
+        continue;
+      }
+      cur += ch;
+    }
+    if (cur !== '' || row.length) { row.push(cur); rows.push(row); }
+    return rows;
+  }
+
+  function detectHeaderMapping(headerRow) {
+    const map = {};
+    headerRow.forEach((cell, idx) => {
+      const key = String(cell || '').trim().toLowerCase();
+      if (!key) return;
+      if (/(name|назв|назва|product)/.test(key)) map.name = idx;
+      else if (/(desc|опис|description)/.test(key)) map.description = idx;
+      else if (/(price|ціна|цена)/.test(key)) map.price = idx;
+      else if (/(currency|валюта|uah|грн)/.test(key)) map.currency = idx;
+      else if (/(unit|один|одиниця|упак)/.test(key)) map.unit = idx;
+      else if (/(availability|наяв|stock|available|кількість)/.test(key)) map.availability = idx;
+      else if (/(code|код|sku)/.test(key)) map.code = idx;
+      else if (/(image|img|photo|зобр)/.test(key)) map.image = idx;
+    });
+    return map;
+  }
+
+  function loadProductsFromCSV(text) {
+    const table = parseCSV(text);
+    if (!table || table.length === 0) return;
+    let header = table[0];
+    const headerLooksLikeText = header.some(c => /[A-Za-zА-Яа-яІіЇїЄєҐґ]/.test(String(c)));
+    let indices = null;
+    let dataRows = table;
+    if (headerLooksLikeText) {
+      indices = detectHeaderMapping(header);
+      dataRows = table.slice(1);
+    }
+    dataRows.forEach(cols => {
+      if (!cols || cols.length === 0) return;
+      const c = cols.map(x => (x||'').toString().trim());
+      const get = (key, defIndex) => {
+        if (indices && indices[key] !== undefined) return (c[indices[key]] || '').trim();
+        return (c[defIndex] || '').trim();
+      };
+      const item = {
+        name: get('name', 0),
+        description: get('description', 1),
+        price: get('price', 2),
+        currency: get('currency', 3),
+        unit: get('unit', 4),
+        availability: get('availability', 5),
+        code: get('code', 6),
+        image: get('image', 7)
+      };
+      if (item.code) productsByCode[item.code] = item, productsIndex[item.code.toLowerCase()] = item;
+      if (item.name) productsByName[item.name] = item, productsIndex[item.name.toLowerCase()] = item;
+    });
+
+    // обновляем карточки
+    document.querySelectorAll('.product-card').forEach(card => {
+      const key = card.dataset.key || card.querySelector('h3')?.textContent?.trim();
+      if (!key) return;
+      const found = productsIndex[key.toLowerCase()];
+      if (found) {
+        const priceBadge = card.querySelector('.price-badge');
+        const stockMuted = card.querySelector('.stock-muted');
+        const displayPrice = found.price ? (found.price + (found.currency ? ' ' + found.currency : '')) : 'по запиту';
+        const displayStock = found.availability ? found.availability : 'за запитом';
+        if (priceBadge) priceBadge.textContent = displayPrice;
+        if (stockMuted) stockMuted.textContent = displayStock;
+        if (found.image) {
+          const imgEl = card.querySelector('img');
+          if (imgEl) {
+            imgEl.src = (found.image.startsWith('http') || found.image.startsWith('//')) ? found.image : ('images/' + found.image);
+          }
+        }
+      }
+    });
+  }
+
+  // загрузка CSV
+  fetch(CSV_URL)
+    .then(res => {
+      if (!res.ok) throw new Error('CSV fetch failed: ' + res.status);
+      return res.text();
+    })
+    .then(text => loadProductsFromCSV(text))
+    .catch(err => {
+      console.warn('Не вдалося завантажити CSV:', err);
+    });
+
+  // показать модалку
+  function showModal(productKey) {
+    if (!productKey) return;
+    let product = productsByCode[productKey] || productsByName[productKey] || productsIndex[productKey.toLowerCase()];
+    // берем картинку с карточки если есть
+    const card = Array.from(document.querySelectorAll('.product-card')).find(c => c.dataset.key === productKey);
+    if (card) {
+      const img = card.querySelector('img');
+      modalImage.src = img ? img.src : (product && product.image ? ((product.image.startsWith('http')||product.image.startsWith('//')) ? product.image : ('images/' + product.image)) : 'images/no-image.jpg');
+      modalImage.alt = img ? img.alt : (product && product.name ? product.name : '');
+    } else {
+      // если карточки нет, берем изображение из CSV (если есть)
+      if (product && product.image) {
+        modalImage.src = (product.image.startsWith('http') || product.image.startsWith('//')) ? product.image : ('images/' + product.image);
+        modalImage.alt = product.name || '';
+      } else {
+        modalImage.src = 'images/no-image.jpg';
+        modalImage.alt = product && product.name ? product.name : '';
+      }
+    }
+
+    if (!product) {
+      modalTitle.textContent = productKey;
+      modalDescription.textContent = "Інформація недоступна";
+      modalPrice.textContent = "—";
+      modalUnit.textContent = "—";
+      modalAvailability.textContent = "—";
+    } else {
+      modalTitle.textContent = product.name || productKey;
+      modalDescription.textContent = product.description || "Опис відсутній";
+      modalPrice.textContent = product.price ? (product.price + (product.currency ? " " + product.currency : "")) : "—";
+      modalUnit.textContent = product.unit || "—";
+      modalAvailability.textContent = product.availability || "—";
+    }
+
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden','false');
+    modal._lastFocus = document.activeElement;
+    modalCloseBtn.focus();
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function hideModal() {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+    setTimeout(() => {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }, 220);
+    if (modal._lastFocus && typeof modal._lastFocus.focus === 'function') modal._lastFocus.focus();
+  }
+
+  // навешиваем обработчики на карточки
+  document.querySelectorAll('.product-card').forEach(card => {
+    const key = card.dataset.key;
+    card.addEventListener('click', () => showModal(key));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        showModal(key);
+      }
+    });
+  });
+
+  // обработчики модалки
+  modalCloseBtn.addEventListener('click', hideModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) hideModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) hideModal();
+  });
+
+  // кнопки внутри модалки (примерная логика)
+  modalOrderBtn.addEventListener('click', () => {
+    alert('Дякуємо! Ми отримали заявку — менеджер зв\'яжеться з Вами для підтвердження.');
+  });
+  modalInquiryBtn.addEventListener('click', () => {
+    alert('Напишіть нам на info@agrolis.ua або зателефонуйте +38 (099) 123-45-67 для уточнення.');
+  });
+});
+</script>
+
+</body>
+</html>
